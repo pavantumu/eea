@@ -13,45 +13,8 @@ using EEAFormI9Portal.Models;
 namespace EEAFormI9Portal.Controllers
 {
     [Authorize]
-    public class AccountController : Controller
+    public class AccountController : BaseController
     {
-        private ApplicationSignInManager _signInManager;
-        private ApplicationUserManager _userManager;
-
-        public AccountController()
-        {
-        }
-
-        public AccountController(ApplicationUserManager userManager, ApplicationSignInManager signInManager )
-        {
-            UserManager = userManager;
-            SignInManager = signInManager;
-        }
-
-        public ApplicationSignInManager SignInManager
-        {
-            get
-            {
-                return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
-            }
-            private set 
-            { 
-                _signInManager = value; 
-            }
-        }
-
-        public ApplicationUserManager UserManager
-        {
-            get
-            {
-                return _userManager ?? HttpContext.GetOwinContext().GetUserManager<ApplicationUserManager>();
-            }
-            private set
-            {
-                _userManager = value;
-            }
-        }
-
         //
         // GET: /Account/Login
         [AllowAnonymous]
@@ -139,6 +102,7 @@ namespace EEAFormI9Portal.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
+           // ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("systemadmin")).ToList(), "Name", "Name");
             return View();
         }
 
