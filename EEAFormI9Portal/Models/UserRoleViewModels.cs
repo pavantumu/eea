@@ -21,5 +21,5 @@ namespace EEAFormI9Portal.Models
         [Display(Name = "Users")]
         public AspNetUser Users { get; internal set; }
 
-    }
+    } 
 }
