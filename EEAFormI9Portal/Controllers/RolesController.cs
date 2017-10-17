@@ -16,6 +16,8 @@ namespace EEAFormI9Portal.Controllers
     {
         private EEAFORMI9Entities db = new EEAFORMI9Entities();
 
+        
+
         public ActionResult Dashboard()
         {
             return View();
@@ -102,16 +104,16 @@ namespace EEAFormI9Portal.Controllers
         // more details see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        //public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUser aspNetUser)
-        public ActionResult Edit(UserRoleViewModel roleViewModel)
+        public ActionResult Edit([Bind(Include = "Id,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] AspNetUser aspNetUser)
+        //public ActionResult Edit(UserRoleViewModel roleViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Entry(roleViewModel).State = EntityState.Modified;
+                db.Entry(aspNetUser).State = EntityState.Modified;
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(roleViewModel);
+            return View(aspNetUser);
         }
 
         // GET: Roles/Delete/5

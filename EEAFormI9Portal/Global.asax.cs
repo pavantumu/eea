@@ -1,4 +1,5 @@
-﻿using System;
+﻿using EEAFormI9Portal.Factory;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -16,6 +17,7 @@ namespace EEAFormI9Portal
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
             BundleConfig.RegisterBundles(BundleTable.Bundles);
+            AutoMapperInitializer.TwoWayMapping();
         }
     }
 }

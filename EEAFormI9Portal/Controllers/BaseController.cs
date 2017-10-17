@@ -1,4 +1,6 @@
-﻿using EEAFormI9Portal.Models;
+﻿using EEAFormI9Portal.Factory.IServices;
+using EEAFormI9Portal.Factory.IServicesImplementation;
+using EEAFormI9Portal.Models;
 using Microsoft.AspNet.Identity.Owin;
 using System;
 using System.Collections.Generic;
@@ -13,6 +15,8 @@ namespace EEAFormI9Portal.Controllers
         protected ApplicationSignInManager _signInManager = null;
         protected ApplicationUserManager _userManager = null;
         protected ApplicationDbContext context;
+
+        protected readonly static IUserManagement _IUserManagement = new UserManagement();
         //protected Helper _dbhelp;
 
         public BaseController()

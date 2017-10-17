@@ -44,6 +44,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.AI.Agent.Intercept, Version=1.2.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.ApplicationInsights.Agent.Intercept.1.2.1\lib\net45\Microsoft.AI.Agent.Intercept.dll</HintPath>
       <Private>True</Private>
@@ -298,6 +302,10 @@
     <ProjectReference Include="..\EEAFormI9Portal.EF\EEAFormI9Portal.EF.csproj">
       <Project>{1871d750-0881-4462-9fb1-f96b95c61069}</Project>
       <Name>EEAFormI9Portal.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EEAFormI9Portal.Factory\EEAFormI9Portal.Factory.csproj">
+      <Project>{8110AD18-20A8-421B-91F1-F77860B76D36}</Project>
+      <Name>EEAFormI9Portal.Factory</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

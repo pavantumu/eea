@@ -1,4 +1,5 @@
 ﻿using EEAFormI9Portal.EF;
+using EEAFormI9Portal.Factory.IServices;
 using EEAFormI9Portal.Models;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using AutoMapper;
 
 namespace EEAFormI9Portal.Controllers
 {
@@ -46,6 +48,19 @@ namespace EEAFormI9Portal.Controllers
         public ActionResult UserDetails()
         {
             return View(db.AspNetUsers.ToList());
+        }
+
+
+        [HttpGet]
+        public JsonResult GetUserDetails()
+        {
+            var User = new List<AspNetUser>();
+
+            User = _IUserManagement.GetUserDetails();
+            var e = Mapper.Map<List<AspNetUser>>(User);
+
+            return Json(e, JsonRequestBehavior.AllowGet);
+
         }
 
         // GET: User

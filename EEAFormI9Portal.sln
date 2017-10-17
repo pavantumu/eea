@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EEAFormI9Portal", "EEAFormI
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EEAFormI9Portal.EF", "EEAFormI9Portal.EF\EEAFormI9Portal.EF.csproj", "{1871D750-0881-4462-9FB1-F96B95C61069}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EEAFormI9Portal.Factory", "EEAFormI9Portal.Factory\EEAFormI9Portal.Factory.csproj", "{8110AD18-20A8-421B-91F1-F77860B76D36}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{1871D750-0881-4462-9FB1-F96B95C61069}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1871D750-0881-4462-9FB1-F96B95C61069}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1871D750-0881-4462-9FB1-F96B95C61069}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8110AD18-20A8-421B-91F1-F77860B76D36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8110AD18-20A8-421B-91F1-F77860B76D36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8110AD18-20A8-421B-91F1-F77860B76D36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8110AD18-20A8-421B-91F1-F77860B76D36}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
