@@ -15,7 +15,7 @@ namespace EEAFormI9Portal.Factory
         {
             Mapper.Initialize(cfg =>
             {
-                cfg.CreateMap<AspNetUser, >
+                cfg.CreateMap<AspNetUser,  >
             })
         }
     }
