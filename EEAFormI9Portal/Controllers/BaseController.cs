@@ -19,6 +19,7 @@ namespace EEAFormI9Portal.Controllers
 
         protected readonly static IUserManagement _IUserManagement = new UserManagement();
         protected readonly static IEmailManagement _IEmailManagement = new EmailManagement();
+        protected readonly static IDocumentManagement _IDocumentManagement = new DocumentManagement();
         protected readonly EEAFORMI9Entities db = new EEAFORMI9Entities();
         //protected Helper _dbhelp;
 

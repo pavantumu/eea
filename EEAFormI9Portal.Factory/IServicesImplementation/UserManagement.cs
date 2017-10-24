@@ -55,17 +55,42 @@ namespace EEAFormI9Portal.Factory.IServicesImplementation
 
         public List<AspNetUser> GetUserDetails()
         {
-            return db.AspNetUsers.ToList();
+            //var role = db.AspNetRoles.ToList();
+
+            var result = db.AspNetUsers.Where(t => t.AspNetRoles.Any(r => r.Name == "hr")).Select(x => x).ToList();
+
+            //var add = from user in AspNetUser join role in AspNetRole on 
+            return result;
         }
 
-        public List<ViewUserAndRoleDetails> GetUserAndRoleDetails()
+        //public List<ViewUserAndRoleDetails> GetUserAndRoleDetails()
+        //{
+        //    var User = new ViewUserAndRoleDetails();
+        //    var userFromDb = db.AspNetUsers.ToList();
+
+        //    var e = Mapper.Map<List<ViewUserAndRoleDetails>>(userFromDb);
+
+        //    return e;
+        //}
+
+        public List<AspNetUser> GetUserAndRoleDetails()
         {
-            var User = new ViewUserAndRoleDetails();
-            var userFromDb = db.AspNetUsers.ToList();
+            var User = db.AspNetUsers.Where(t => t.AspNetRoles.Any(r => r.Name == "systemadmin")).Select(x => x).ToList();
+            //var userFromDb = db.AspNetUsers.ToList();
 
-            var e = Mapper.Map<List<ViewUserAndRoleDetails>>(userFromDb);
+            //var e = Mapper.Map<List<ViewUserAndRoleDetails>>(userFromDb);
 
-            return e;
+            return User;
+        }
+
+        public List<AspNetUser> GetHrDetails()
+        {
+            var User = db.AspNetUsers.Where(t => t.AspNetRoles.Any(r => r.Name == "systemadmin")).Select(x => x).ToList();
+            //var userFromDb = db.AspNetUsers.ToList();
+
+            //var e = Mapper.Map<List<ViewUserAndRoleDetails>>(userFromDb);
+
+            return User;
         }
 
         public ViewUserDetails UpdateUserDetails(ViewUserDetails user)

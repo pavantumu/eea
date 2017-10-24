@@ -131,6 +131,7 @@ namespace EEAFormI9Portal.Controllers
             if (ModelState.IsValid)
             {
                 var Rep = Mapper.Map<Representative>(model);
+                Rep.Id += Rep.Id;
                 var Representative = _IUserManagement.AddRepresentative(Rep);
                 return Json(true, JsonRequestBehavior.AllowGet);
             }

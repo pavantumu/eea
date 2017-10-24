@@ -14,7 +14,8 @@ namespace EEAFormI9Portal.Factory.IServices
         ViewUserDetails GetUserById(string Id);
         ViewUserDetails UpdateUserDetails(ViewUserDetails user);
         bool DeleteUser(string Id);
-        List<ViewUserAndRoleDetails> GetUserAndRoleDetails();
+        List<AspNetUser> GetUserAndRoleDetails();
+        List<AspNetUser> GetHrDetails();
         Representative AddRepresentative(Representative model);
         List<Representative> GetRepresentativeDetails();
         bool ConfirmAccount(object data);

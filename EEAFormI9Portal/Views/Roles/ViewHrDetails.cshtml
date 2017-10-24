@@ -1,0 +1,105 @@
+﻿@model IEnumerable<EEAFormI9Portal.EF.AspNetUser>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<script>
+    $(document).ready(function () {
+        //alert('hi');
+        $.get('/Roles/GetHrDetails', {}, function (userdata) {
+                console.log(userdata);
+                $('#userDetailsTable').DataTable({
+                    data: userdata,
+                    columns: [
+                        { mData: "Email" },
+                        { mData: "PhoneNumber" },
+                        { mData: "LockoutEnabled" },
+                        { mData: "AccessFailedCount" },
+                        {
+                            mData: null,
+                            bSortable: false,
+                            mRender: function (data, type, full) {
+                                return '<button id="editbtn" class="btn btn-info" >' + 'Edit' + '</button>';
+                            }
+                        }
+                    ]
+                });
+            });
+    });
+
+    //var hrTable = $('#userDetailsTable').dataTable();
+
+    //$('#hrTable').on('click', 'tbody tr', function () {
+    //    hrTable.row(this).edit({
+    //        buttons: [
+    //            { label: 'Cancel', fn: function () { this.close(); } },
+    //            'Edit'
+    //        ]
+    //    });
+    //});
+
+    //$('#editbtn').click(function () {
+    //    var currentTD = $(this).parents('tr').find('td');
+    //    if ($(this).html() == 'Edit') {
+    //        $.each(currentTD, function () {
+    //            $(this).prop('contenteditable', true)
+    //        });
+    //    } else {
+    //        $.each(currentTD, function () {
+    //            $(this).prop('contenteditable', false)
+    //        });
+    //    }
+
+    //    $(this).html($(this).html() == 'Edit' ? 'Save' : 'Edit')
+
+    //});
+
+    $('.editbtn').click(function () {
+        alert('he');
+    });
+</script>
+
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<div class="container-fluid">
+    <h2>HR Details</h2>
+
+    <div class="row">
+
+        <div class="col-md-8 col-lg-8 col-sm-4">
+            <div class="panel panel-primary" id="details_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Roles</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-hover" id="userDetailsTable">
+                        <thead>
+                            <tr>
+                                <th data-field="email">Email</th>
+                                <th data-field="phonenumber">Phone Number</th>
+                                <th data-field="lockoutenabled">Lockout Enabled</th>
+                                <th data-field="accessfailedcount">Access Failed Count</th>
+                                <th>Actions</th>
+                                @* <th data-field="role">Role</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                    <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@*<td>
+        @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+    </td>*@
+
+
+</table>

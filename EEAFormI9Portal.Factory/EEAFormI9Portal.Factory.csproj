@@ -55,8 +55,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperInitializer.cs" />
+    <Compile Include="IServicesImplementation\DocumentManagement.cs" />
     <Compile Include="IServicesImplementation\EmailManagement.cs" />
     <Compile Include="IServicesImplementation\UserManagement.cs" />
+    <Compile Include="IServices\IDocumentManagement.cs" />
     <Compile Include="IServices\IEmailManagement.cs" />
     <Compile Include="IServices\IUserManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

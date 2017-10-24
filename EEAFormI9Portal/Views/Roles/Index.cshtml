@@ -4,9 +4,6 @@
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
-
-
 <script>
     $(document).ready(function () {
         //alert('hi');
@@ -17,7 +14,9 @@
                     columns: [
                         { data: "Email" },
                         { data: "PhoneNumber" },
-                        { data: "UserName" }
+                        { data: "LockoutEnabled" },
+                        { data: "AccessFailedCount" }
+
                     ]
                 });
             });
@@ -28,24 +27,39 @@
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
-<table class="table" id="userDetailsTable">
+<div class="container-fluid">
+    <h2>Admin Details</h2>
 
-    <thead>
-        <tr>
-            <th data-field="email">Email</th>
-            <th data-field="phonenumber">Phone Number</th>
-            <th data-field="lockoutenabled">Lockout Enabled</th>
-            <th data-field="accessfailedcount">Access Failed Count</th>
-            <th data-field="username">User Name</th>
-            <th data-field="role">Role</th>
-        </tr>
-    </thead>
-    @*    <td>
+    <div class="row">
+
+        <div class="col-md-8 col-lg-8 col-sm-4">
+            <div class="panel panel-primary" id="details_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Roles</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-hover" id="userDetailsTable">
+                        <thead>
+                            <tr>
+                                <th data-field="email">Email</th>
+                                <th data-field="phonenumber">Phone Number</th>
+                                <th data-field="lockoutenabled">Lockout Enabled</th>
+                                <th data-field="accessfailedcount">Access Failed Count</th>
+                               @* <th data-field="role">Role</th>*@
+                            </tr>
+                        </thead>
+                    </table>
+                    <button class="btn btn-primary">Add</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    
+        @*<td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
-}*@
-
-</table>
+        </td>*@
+    

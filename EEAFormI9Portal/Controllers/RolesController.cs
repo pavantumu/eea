@@ -21,14 +21,14 @@ namespace EEAFormI9Portal.Controllers
         [HttpGet]
         public JsonResult GetUserDetails()
         {
-            //var User = new List<AspNetUser>();
-            var User1 = new List<ViewUserAndRoleDetails>();
+            var User = new List<AspNetUser>();
+            //var User1 = new List<ViewUserAndRoleDetails>();
 
-            User1 = _IUserManagement.GetUserAndRoleDetails();
+            User = _IUserManagement.GetUserAndRoleDetails();
             
-            //var e = Mapper.Map<List<ViewUserAndRoleDetails>>(User1);
+            var e = Mapper.Map<List<ViewUserAndRoleDetails>>(User);
 
-            return Json(User1, JsonRequestBehavior.AllowGet);
+            return Json(e, JsonRequestBehavior.AllowGet);
 
         }
 
@@ -155,6 +155,43 @@ namespace EEAFormI9Portal.Controllers
             db.AspNetUsers.Remove(aspNetUser);
             db.SaveChanges();
             return RedirectToAction("Index");
+        }
+
+
+        public ActionResult ViewRoleDetails()
+        {
+            return View();
+        }
+
+        [HttpGet]
+       // [Authorize(Roles ="sysadmin")]
+        public JsonResult GetRoles()
+        {
+            var role = new List<AspNetRole>();
+            //role = _IRoleManagement.GetRoles();
+            role = db.AspNetRoles.ToList();
+            var e = Mapper.Map<List<ViewRoles>>(role);
+            return Json(e, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult ViewHrDetails()
+        {
+            return View();
+
+        }
+
+        [HttpGet]
+        public JsonResult GetHrDetails()
+        {
+            var User = new List<AspNetUser>();
+            //var User1 = new List<ViewUserAndRoleDetails>();
+
+            User = _IUserManagement.GetHrDetails();
+
+            var e = Mapper.Map<List<ViewUserAndRoleDetails>>(User);
+
+            return Json(e, JsonRequestBehavior.AllowGet);
+
         }
 
         protected override void Dispose(bool disposing)

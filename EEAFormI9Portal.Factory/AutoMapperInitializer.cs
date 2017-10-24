@@ -20,13 +20,20 @@ namespace EEAFormI9Portal.Factory
 
                 cfg.CreateMap<AspNetUser, ViewUserAndRoleDetails>()
                 //.ForMember(dest => dest.Role, opt => opt.MapFrom(source => source.AspNetRoles));
-                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => source.AspNetRoles)) ;
-                //.ReverseMap()
+                //.ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => source.AspNetRoles)) ;
+                .ReverseMap();
                 //.ForMember(dest => dest.AspNetRoles, opt => opt.Ignore());
 
                 cfg.CreateMap<Representative, ViewRepresentativeDetails>();
 
                 cfg.CreateMap<Representative, AddRepresentative>()
+                .ReverseMap();
+
+                cfg.CreateMap<AspNetRole, ViewRoles>()
+                .ReverseMap();
+
+                cfg.CreateMap<DocumentCurrent, ViewDocument>()
+                .ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => new DocumentStatu { }))
                 .ReverseMap();
             });
         }

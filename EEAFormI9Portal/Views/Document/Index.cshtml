@@ -1,0 +1,93 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-4 col-lg-4">
+            <a href="/User/SendNew">
+                <div class="dashboard-box" id="sendnew" style="height: 50px; width: 50px;">
+                    <h3>New</h3>
+                </div>
+            </a>
+        </div>
+       
+    </div>
+    <div class="row">
+        <div class="col-md-3 col-sm-3">
+            
+            <div class="panel panel-primary" id="summary_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Documents</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item" id="addRep">
+                        Sent
+                    </li>
+                    <li class="list-group-item" id="editRep">
+                        Pending
+                    </li>
+                    <li class="list-group-item" id="editRep">
+                        Completed
+                    </li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8 col-lg-8 col-sm-4">
+            <div class="panel panel-primary" id="details_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Details</h3>
+                </div>
+                <div class="panel-body">
+                    <table class="table table-responsive table-hover" id="docDetails">
+                        <thead>
+                            <tr>
+                                <th data-field="userId">Employee</th>
+                                <th data-field="docStatus">Document Status</th>
+                                <th data-field="docRepresentative">Representative</th>
+                                <th data-field="Date">Date</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(document).ready(function () {
+        $.get({
+            url: '/Document/GetDocumentDetails',
+            data: {},
+            success: function (docdata) {
+                $('#docDetails').DataTable({
+                    data: docdata,
+                    aoColumns: [
+                        { data: "UserId" },
+                        { data: "DocumentStatusId" },
+                        { data: "RepresentativeId" },
+                        { data: "DateUpdated" }
+                        //{
+                        //    mData: null,
+                        //    bSortable: false,
+                        //    mRender: function (o) { return '<i class="ui-tooltip fa fa-pencil" style="font-size: 22px;" data-original-title="Edit"></i><i class="ui-tooltip fa fa-trash-o" style="font-size: 22px;" data-original-title="Delete"></i>'; }
+                        //}
+
+                    ]
+
+                });
+            },
+            error: function () {
+
+            }
+        });
+    });
+</script>
