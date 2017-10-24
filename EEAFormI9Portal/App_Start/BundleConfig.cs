@@ -25,7 +25,12 @@ namespace EEAFormI9Portal
 
             bundles.Add(new StyleBundle("~/Content/css").Include(
                       "~/Content/bootstrap.css",
-                      "~/Content/site.css"));
+                      "~/Content/site.css",
+                      "~/Content/style.css",
+                      "~/Content/jquery.dataTables.min.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/datatables").Include(
+                      "~/Scripts/jquery.dataTables.min.js"));
         }
     }
 }

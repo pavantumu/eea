@@ -8,6 +8,7 @@ using System.Web;
 using System.Web.Mvc;
 using EEAFormI9Portal.EF;
 using EEAFormI9Portal.Models;
+using AutoMapper;
 
 namespace EEAFormI9Portal.Controllers
 {
@@ -16,7 +17,21 @@ namespace EEAFormI9Portal.Controllers
     {
         private EEAFORMI9Entities db = new EEAFORMI9Entities();
 
-        
+
+        [HttpGet]
+        public JsonResult GetUserDetails()
+        {
+            //var User = new List<AspNetUser>();
+            var User1 = new List<ViewUserAndRoleDetails>();
+
+            User1 = _IUserManagement.GetUserAndRoleDetails();
+            
+            //var e = Mapper.Map<List<ViewUserAndRoleDetails>>(User1);
+
+            return Json(User1, JsonRequestBehavior.AllowGet);
+
+        }
+
 
         public ActionResult Dashboard()
         {

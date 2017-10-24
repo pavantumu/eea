@@ -45,6 +45,7 @@
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -54,7 +55,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AutoMapperInitializer.cs" />
+    <Compile Include="IServicesImplementation\EmailManagement.cs" />
     <Compile Include="IServicesImplementation\UserManagement.cs" />
+    <Compile Include="IServices\IEmailManagement.cs" />
     <Compile Include="IServices\IUserManagement.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -62,6 +65,10 @@
     <ProjectReference Include="..\EEAFormI9Portal.EF\EEAFormI9Portal.EF.csproj">
       <Project>{1871d750-0881-4462-9fb1-f96b95c61069}</Project>
       <Name>EEAFormI9Portal.EF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EEAFormI9Portal.Models\EEAFormI9Portal.Models.csproj">
+      <Project>{271D7327-C554-408F-B98B-FEDBD5EFFCD5}</Project>
+      <Name>EEAFormI9Portal.Models</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -1,0 +1,69 @@
+﻿
+
+    <div class="navbar navbar-fixed-top" style="background-color:powderblue; border-color:lightgrey;">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                @Html.ActionLink("Computech Corporation", "Index", "Home", new { area = "" }, new { @class = "navbar-brand" })
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+
+                    @if (Request.IsAuthenticated)
+                    {
+                        if (User.IsInRole("systemadmin"))
+                        {
+                            @*<li>@Html.ActionLink("MANAGE", "Index", "Roles")</li>*@
+                            <li>@Html.ActionLink("DASHBOARD", "Dashboard", "Roles")</li>
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    MANAGE<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("ADMINS", "Index", "Roles")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("HR", "Index", "Roles")
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        else if (User.IsInRole("hr"))
+                        {
+                            @*<li>@Html.ActionLink("User", "Index", "User")</li>
+                                <li>@Html.ActionLink("User", "Index", "User")</li>
+                                <li>@Html.ActionLink("User", "Index", "User")</li>*@
+
+                            <li>@Html.ActionLink("DASHBOARD", "Dashboard", "User")</li>
+
+                            <li class="dropdown">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                                    MANAGE<span class="caret"></span>
+                                </a>
+                                <ul class="dropdown-menu">
+                                    <li>
+                                        @Html.ActionLink("EMPLOYEES", "UserDetails", "User")
+                                    </li>
+                                    <li>
+                                        @Html.ActionLink("REPRESENTATIVES", "RepresentativeDetails", "User")
+                                    </li>
+                                </ul>
+                            </li>
+
+                        }
+                        else
+                        {
+                            <li>@Html.ActionLink("User", "Index", "User")</li>
+                        }
+                    }
+                </ul>
+                @Html.Partial("_LoginPartial")
+            </div>
+        </div>
+    </div>

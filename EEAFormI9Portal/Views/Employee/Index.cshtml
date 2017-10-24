@@ -1,0 +1,48 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<div class="container">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">Instructions</h3>
+        </div>
+        <div class="panel-body">
+            <p>
+                1. Please enter the email address. <br />
+                2. Click on send button to receive a temporary password and a link to change password.
+            </p>
+            <form>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="btnsubmit" class="form-control btn btn-primary" value="Send"/>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<script>
+    $('#btnsubmit').click(function () {
+        var email = {
+            "email": $('#email').val()
+        };
+
+        $.post({
+            url: '/Employee/SendEmailPassword',
+            data: email,
+            dataType: "json",
+            success: function () {
+
+            }
+        });
+    });
+</script>
+
+
+
+

@@ -12,10 +12,10 @@ using AutoMapper;
 
 namespace EEAFormI9Portal.Controllers
 {
-    [Authorize]
+    [Authorize(Roles = "hr")]
     public class UserController : BaseController
     {
-        private EEAFORMI9Entities db = new EEAFORMI9Entities();
+        //private EEAFORMI9Entities db = new EEAFORMI9Entities();
 
         public ActionResult Index()
         {
@@ -47,21 +47,111 @@ namespace EEAFormI9Portal.Controllers
 
         public ActionResult UserDetails()
         {
-            return View(db.AspNetUsers.ToList());
+            //return View(db.AspNetUsers.ToList());
+            return View();
         }
 
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
 
         [HttpGet]
+        [Authorize(Roles = "hr")]
         public JsonResult GetUserDetails()
         {
             var User = new List<AspNetUser>();
 
             User = _IUserManagement.GetUserDetails();
-            var e = Mapper.Map<List<AspNetUser>>(User);
+            var e = Mapper.Map<List<ViewUserDetails>>(User);
 
             return Json(e, JsonRequestBehavior.AllowGet);
 
         }
+
+        public ActionResult UpdateUserDetails(string id)
+        {
+            return View(); 
+        }
+
+        [HttpGet]
+        public JsonResult GetUserDetailsById(string Id)
+        {
+            var User = new ViewUserDetails();
+
+            User = _IUserManagement.GetUserById(Id);
+            var e = Mapper.Map<ViewUserDetails>(User);
+
+            return Json(e, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult UpdateUserDetails(ViewUserDetails user)
+        {
+            var updateUser = new ViewUserDetails();
+
+            updateUser = _IUserManagement.UpdateUserDetails(user);
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public ActionResult DeleteUser(string id)
+        {
+            bool result;
+            result = _IUserManagement.DeleteUser(id);
+            return RedirectToAction("UserDetails", "User");
+        }
+
+        public ActionResult SendNew()
+        {
+            return View();
+        }
+
+
+        public ActionResult RepresentativeDetails()
+        {
+            //return View(db.AspNetUsers.ToList());
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetRepresentativeDetails()
+        {
+            var User = new List<Representative>();
+
+            User = _IUserManagement.GetRepresentativeDetails();
+            var e = Mapper.Map<List<ViewRepresentativeDetails>>(User);
+
+            return Json(e, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult AddRepresentative(AddRepresentative model)
+        {
+            if (ModelState.IsValid)
+            {
+                var Rep = Mapper.Map<Representative>(model);
+                var Representative = _IUserManagement.AddRepresentative(Rep);
+                return Json(true, JsonRequestBehavior.AllowGet);
+            }
+
+            return Json(false, JsonRequestBehavior.AllowGet);
+        }
+
+        [HttpPost]
+        public JsonResult SendEmail(string email)
+        {
+            var sendToEmail = email;
+            if(sendToEmail != null)
+            {
+                var result = _IEmailManagement.SendEmail(sendToEmail);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+
+
+
 
         // GET: User
         //public ActionResult isAdminUser()

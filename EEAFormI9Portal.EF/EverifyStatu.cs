@@ -14,7 +14,16 @@ namespace EEAFormI9Portal.EF
     
     public partial class EverifyStatu
     {
-        public string Id { get; set; }
-        public string E_Verify_Status { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+        public EverifyStatu()
+        {
+            this.DocumentCurrents = new HashSet<DocumentCurrent>();
+        }
+    
+        public int Id { get; set; }
+        public string EVerifyStatus { get; set; }
+    
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<DocumentCurrent> DocumentCurrents { get; set; }
     }
 }

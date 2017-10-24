@@ -1,4 +1,5 @@
 ﻿using EEAFormI9Portal.EF;
+using EEAFormI9Portal.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,5 +11,12 @@ namespace EEAFormI9Portal.Factory.IServices
     public interface IUserManagement
     {
         List<AspNetUser> GetUserDetails();
+        ViewUserDetails GetUserById(string Id);
+        ViewUserDetails UpdateUserDetails(ViewUserDetails user);
+        bool DeleteUser(string Id);
+        List<ViewUserAndRoleDetails> GetUserAndRoleDetails();
+        Representative AddRepresentative(Representative model);
+        List<Representative> GetRepresentativeDetails();
+        bool ConfirmAccount(object data);
     }
 }

@@ -64,7 +64,22 @@
       <DependentUpon>EEAFORMI9.tt</DependentUpon>
     </Compile>
     <Compile Include="Class1.cs" />
+    <Compile Include="Contact.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
     <Compile Include="C__MigrationHistory.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentCompleted.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentCurrent.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentStatu.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="DocumentTerminated.cs">
       <DependentUpon>EEAFORMI9.tt</DependentUpon>
     </Compile>
     <Compile Include="EEAFORMI9.Context.cs">
@@ -85,8 +100,32 @@
     <Compile Include="EverifyStatu.cs">
       <DependentUpon>EEAFORMI9.tt</DependentUpon>
     </Compile>
+    <Compile Include="Notification.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationRecepient.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="NotificationType.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Representative.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="RepresentativeAppointment.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagram.cs">
+      <DependentUpon>EEAFORMI9.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserTerminated.cs">
       <DependentUpon>EEAFORMI9.tt</DependentUpon>
     </Compile>
   </ItemGroup>

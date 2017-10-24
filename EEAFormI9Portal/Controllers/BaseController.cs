@@ -1,4 +1,5 @@
-﻿using EEAFormI9Portal.Factory.IServices;
+﻿using EEAFormI9Portal.EF;
+using EEAFormI9Portal.Factory.IServices;
 using EEAFormI9Portal.Factory.IServicesImplementation;
 using EEAFormI9Portal.Models;
 using Microsoft.AspNet.Identity.Owin;
@@ -17,6 +18,8 @@ namespace EEAFormI9Portal.Controllers
         protected ApplicationDbContext context;
 
         protected readonly static IUserManagement _IUserManagement = new UserManagement();
+        protected readonly static IEmailManagement _IEmailManagement = new EmailManagement();
+        protected readonly EEAFORMI9Entities db = new EEAFORMI9Entities();
         //protected Helper _dbhelp;
 
         public BaseController()

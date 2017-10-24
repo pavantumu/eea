@@ -1,0 +1,76 @@
+﻿
+@{
+    ViewBag.Title = "UpdateUserDetails";
+}
+
+<script>
+    $(function () {
+        //alert('hi')
+        var id = '@Request.QueryString["id"]';
+        //var id = "1c04b049-854b-4355-94f2-3efe4f74dc3b";
+        $.get("/User/GetUserDetailsById", { Id: id }, function (data) {
+            //console.log(data.Email);
+            $("#email").val(data.Email);
+            $("#phonenumber").val(data.PhoneNumber);
+            $("#username").val(data.UserName);
+        });
+
+        
+
+        $("#btnsubmit").click(function () {
+            var user = {
+                "Id": id,
+                "Email": $("#email").val(),
+                "PhoneNumber": $("#phonenumber").val(),
+                "UserName": $("#username").val()
+            };
+
+            //var user1 = {
+            //    "Id": 123,
+            //    "Email": 'pavan',
+            //    "PhoneNumber": 'pavan',
+            //    "UserName": 'pavan'
+            //}
+            $.post({
+                url: '/User/UpdateUserDetails',
+                data: user,
+                dataType: "json",
+
+                success: function (data) {
+                    alert("success");
+                    window.location.href = "@Url.Content("~/User/UserDetails")";
+                }
+            });
+        });
+    });
+</script>
+
+<h2>UpdateUserDetails</h2>
+
+<div class="container">
+    <div class="row">
+        <form>
+            <div class="col-sm-2"></div>
+            <div class="col-sm-8">
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="email" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Phone Number</label>
+                    <input type="text" id="phonenumber" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>User Name</label>
+                    <input type="text" id="username" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <input type="button" id="btnsubmit" value="Submit" class="btn btn-primary" />
+                </div>
+            </div>
+            <div class="col-sm-2"></div>
+        </form>
+    </div>
+</div>
+
+

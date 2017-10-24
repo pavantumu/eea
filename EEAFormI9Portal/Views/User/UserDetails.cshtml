@@ -4,13 +4,66 @@
     ViewBag.Title = "User Details";
 }
 
-<h2>Index</h2>
+<script>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
+    $(document).ready(function () {
+        //alert('hi');
+
+        $.get('/User/GetUserDetails', {}, function (userdata) {
+            console.log(userdata);
+
+
+            $('#userDetailsTable').dataTable({
+                data: userdata,
+                aoColumns: [
+                    { mData: "Email" },
+                    { mData: "PhoneNumber" },
+                    { mData: "UserName" }
+                    //{
+                    //    mData: null,
+                    //    bSortable: false,
+                    //    mRender: function (o) { return '<i class="ui-tooltip fa fa-pencil" style="font-size: 22px;" data-original-title="Edit"></i><i class="ui-tooltip fa fa-trash-o" style="font-size: 22px;" data-original-title="Delete"></i>'; }
+                    //}
+
+                ]
+
+            });
+        });
+    });
+
+    $("#btndelete").click(function () {
+        @*var id = '@Request.QueryString["id"]';*@
+
+        var id = '1c04b049-854b-4355-94f2-3efe4f74dc3b';
+        $.post("/User/DeleteUser", {
+            Id: id
+        },
+        function () {
+            //alert("Updated");
+        })
+    });
+
+</script>
+
+
+
+<div class="container-fluid">
+    <h2>Employee details</h2>
+    <table class="table table-responsive table-hover" id="userDetailsTable">
+        <thead>
+            <tr>
+                <th data-field="email">Email</th>
+                <th data-field="phonenumber">Phone Number</th>
+                @*<th data-field="lockoutenabled">Lockout Enabled</th>*@
+                @*<th data-field="accessfailedcount">Access Failed Count</th>*@
+                <th data-field="username">User Name</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+
+@*<tr>
         <th>
             @Html.DisplayNameFor(model => model.Email)
         </th>
@@ -53,6 +106,5 @@
                 @Html.ActionLink("Delete", "Delete", new { id = item.Id })
             </td>
         </tr>
-    }
+    }*@
 
-</table>
