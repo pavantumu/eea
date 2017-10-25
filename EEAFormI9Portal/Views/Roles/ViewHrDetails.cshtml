@@ -17,6 +17,9 @@
                         { mData: "LockoutEnabled" },
                         { mData: "AccessFailedCount" },
                         {
+                            mData: "RoleName[, ]"
+                        },
+                        {
                             mData: null,
                             bSortable: false,
                             mRender: function (data, type, full) {
@@ -82,6 +85,7 @@
                                 <th data-field="phonenumber">Phone Number</th>
                                 <th data-field="lockoutenabled">Lockout Enabled</th>
                                 <th data-field="accessfailedcount">Access Failed Count</th>
+                                <th data-field="roles">Roles</th>
                                 <th>Actions</th>
                                 @* <th data-field="role">Role</th>*@
                             </tr>

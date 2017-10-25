@@ -21,6 +21,8 @@ namespace EEAFormI9Portal.Factory
                 cfg.CreateMap<AspNetUser, ViewUserAndRoleDetails>()
                 //.ForMember(dest => dest.Role, opt => opt.MapFrom(source => source.AspNetRoles));
                 //.ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => source.AspNetRoles)) ;
+                .ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => source.AspNetRoles.Select(s => s.Name))) // ToList() ))// SelectMany(x => x.Name))) // Select(x => x.Name)))
+                //.ForMember(dest => dest.RoleName, opt => opt.MapFrom(source => string.Join(",", source.AspNetRoles.Select(x => x.Name))))
                 .ReverseMap();
                 //.ForMember(dest => dest.AspNetRoles, opt => opt.Ignore());
 
@@ -32,9 +34,10 @@ namespace EEAFormI9Portal.Factory
                 cfg.CreateMap<AspNetRole, ViewRoles>()
                 .ReverseMap();
 
-                cfg.CreateMap<DocumentCurrent, ViewDocument>()
-                .ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => new DocumentStatu { }))
-                .ReverseMap();
+                //cfg.CreateMap<DocumentCurrent, ViewDocument>()
+                ////.ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => new DocumentStatu { }))
+                //.ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => string.Join(",", src.DocumentStatu.Select(x => x.Name))))
+                //.ReverseMap();
             });
         }
     }

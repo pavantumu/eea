@@ -16,6 +16,16 @@ namespace EEAFormI9Portal.Factory.IServicesImplementation
         {
             //var doc = new DocumentCurrent();
             var doc = db.DocumentCurrents.ToList();
+            if(doc.Count > 0)
+            {
+                foreach(DocumentCurrent item in doc)
+                {
+                    var user = db.AspNetUsers.SingleOrDefault(x => x.Id == item.UserId);
+
+                }
+                
+            }
+            
             return doc;
         }
     }

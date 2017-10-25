@@ -15,7 +15,7 @@ namespace EEAFormI9Portal.Models
         public bool LockoutEnabled { get; set; }
         public int AccessFailedCount { get; set; }
 
-        //public List<String> RoleName { get; set; }
+        public List<string> RoleName { get; set; }
         //public ICollection<AspNetRole> Role { get; set; }
     }
 }
