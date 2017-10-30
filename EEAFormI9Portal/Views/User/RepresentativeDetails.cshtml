@@ -117,11 +117,18 @@
             $('#repDetailsTable').DataTable({
                 data: userdata,
                 aoColumns: [
-                    { data: "FirstName" },
-                    { data: "LastName" },
-                    { data: "Email" },
-                    { data: "Address1" },
-                    { data: "PhoneNumber" }
+                    { mData: "FirstName" },
+                    { mData: "LastName" },
+                    { mData: "Email" },
+                    { mData: "Address1" },
+                    { mData: "PhoneNumber" },
+                    {
+                        mData: "Email",
+                        bSortable: false,
+                        mRender: function (data, type, full) {
+                            return '<button class="btn btn-sm btn-info" onclick="editDetails(\'' + full.Email + '\')">' + 'Edit' + '</button>';
+                        }
+                    }
                     //{
                     //    mData: null,
                     //    bSortable: false,

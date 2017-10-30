@@ -9,24 +9,44 @@
         //alert('hi');
             $.get('/Roles/GetUserDetails', {}, function (userdata) {
                 console.log(userdata);
-                $('#userDetailsTable').dataTable({
+                $('#userDetailsTable').DataTable({
                     data: userdata,
                     columns: [
-                        { data: "Email" },
-                        { data: "PhoneNumber" },
-                        { data: "LockoutEnabled" },
-                        { data: "AccessFailedCount" }
+                        { mData: "Email" },
+                        { mData: "PhoneNumber" },
+                        { mData: "LockoutEnabled" },
+                        { mData: "AccessFailedCount" },
+                        {
+                            mData: "Email",
+                            bSortable: false,
+                            mRender: function (data, type, full) {
+                                return '<button class="btn btn-sm btn-info" onclick="editDetails(\'' + full.Email + '\', \'' + full.PhoneNumber + '\', \'' + full.LockoutEnabled + '\', \'' + full.AccessFailedCount + '\')">' + 'Edit' + '</button>';
+                            }
+                        }
 
                     ]
                 });
             });
     });
+
+    var editDetails = function (email, phone, lockout, access) {
+
+        //var roles = roleData;
+
+        $('#email').val(email);
+        $('#phonenumber').val(phone);
+        if (!lockout) {
+            $('#lockout').prop('checked', true);
+        }
+        $('#accessfailcount').val(access);
+        $('#myModal').modal('show');
+    };
 </script>
 
 
-<p>
+@*<p>
     @Html.ActionLink("Create New", "Create")
-</p>
+</p>*@
 <div class="container-fluid">
     <h2>Admin Details</h2>
 
@@ -45,15 +65,71 @@
                                 <th data-field="phonenumber">Phone Number</th>
                                 <th data-field="lockoutenabled">Lockout Enabled</th>
                                 <th data-field="accessfailedcount">Access Failed Count</th>
+                                <th>Actions</th>
                                @* <th data-field="role">Role</th>*@
                             </tr>
                         </thead>
                     </table>
-                    <button class="btn btn-primary">Add</button>
+                    @*<button class="btn btn-primary">Add</button>*@
                 </div>
             </div>
         </div>
     </div>
+
+    <!-- Modal -->
+    <div class="modal fade" id="myModal" role="dialog">
+        <div class="modal-dialog">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header" style="padding:35px 50px; background-color:powderblue;">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4>Edit Admin</h4>
+                </div>
+                <div class="modal-body" style="padding:40px 50px;">
+                    <form role="form">
+                        @*<div class="form-group">
+                                <label for="firstname"> First Name</label>
+                                <input type="text" class="form-control" id="firstname" placeholder="Enter first name">
+                            </div>
+                            <div class="form-group">
+                                <label for="lastname"> Last Name</label>
+                                <input type="text" class="form-control" id="lastname" placeholder="Enter last name">
+                            </div>*@
+                        <div class="form-group">
+                            <label for="email"> Email</label>
+                            <input type="email" class="form-control" id="email" placeholder="Enter email" readonly>
+                        </div>
+                        <div class="form-group">
+                            <label for="phonenumber"> Phone Number</label>
+                            <input type="text" class="form-control" id="phonenumber" placeholder="Enter phone number">
+                        </div>
+                        <div class="form-group">
+                            <label for="lockout"> Lockout Enabled</label>
+                            @*<input type="text" class="form-control" id="lockout" placeholder="Enter first name">*@
+                            <input type="checkbox" id="lockout" name="lockout" value="lockout" />
+                        </div>
+                        <div class="form-group">
+                            <label for="accessfailcount"> First Name</label>
+                            <input type="text" class="form-control" id="accessfailcount">
+                        </div>
+                        <div class="form-group" id="cblist">
+                            @*<label for="roles"> Roles</label>
+                                <input type="checkbox" name="role" value="systemadmin" /> System Admin |
+                                <input type="checkbox" name="role" value="admin" /> Admin |
+                                <input type="checkbox" name="role" value="hr" /> HR |
+                                <input type="checkbox" name="role" value="employee" /> Employee |
+                                <input type="checkbox" name="role" value="representative" /> Representative |*@
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button id="btn_add_rep" type="submit" class="btn btn-info btn-default pull-right" data-dismiss="modal"> Update</button>
+                </div>
+            </div>
+
+        </div>
+    </div> 
 </div>
 
     

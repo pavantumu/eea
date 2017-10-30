@@ -316,6 +316,8 @@
     <Content Include="Views\Roles\ViewRoleDetails.cshtml" />
     <Content Include="Views\Roles\ViewHrDetails.cshtml" />
     <Content Include="Views\Document\Index.cshtml" />
+    <Content Include="Views\Employee\Dashboard.cshtml" />
+    <Content Include="Views\Document\ViewDocumentStatusDetails.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

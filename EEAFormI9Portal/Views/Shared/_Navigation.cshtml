@@ -19,7 +19,7 @@
                         {
                             @*<li>@Html.ActionLink("MANAGE", "Index", "Roles")</li>*@
                             <li>@Html.ActionLink("DASHBOARD", "Dashboard", "Roles")</li>
-                            <li class="dropdown">
+                            @*<li class="dropdown">
                                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
                                     MANAGE<span class="caret"></span>
                                 </a>
@@ -37,7 +37,7 @@
                                         @Html.ActionLink("DOCUMENT STATUS", "Index", "Roles")
                                     </li>
                                 </ul>
-                            </li>
+                            </li>*@
 
                         }
                         else if (User.IsInRole("hr"))
@@ -75,7 +75,7 @@
                         }
                         else
                         {
-                            <li>@Html.ActionLink("User", "Index", "User")</li>
+                            <li>@Html.ActionLink("DASHBOARD", "Dashboard", "Employee")</li>
                         }
                     }
                 </ul>

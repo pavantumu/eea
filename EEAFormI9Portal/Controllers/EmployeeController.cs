@@ -70,5 +70,10 @@ namespace EEAFormI9Portal.Controllers
         {
             return View();
         }
+
+        public ActionResult Dashboard()
+        {
+            return View();
+        }
     }
 }

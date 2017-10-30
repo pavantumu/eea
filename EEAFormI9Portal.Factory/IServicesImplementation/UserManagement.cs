@@ -86,9 +86,13 @@ namespace EEAFormI9Portal.Factory.IServicesImplementation
         public List<AspNetUser> GetHrDetails()
         {
             var user = new List<AspNetUser>();
+            //var role = new AspNetRole();
+           // role = db.AspNetRoles.SingleOrDefault(x => x.Name == "hr");
             //var User = db.AspNetUsers.Where(t => t.AspNetRoles.Any(r => r.Name == "systemadmin")).Select(x => x).ToList();
             //var userFromDb = db.AspNetUsers.ToList();
-            user = db.AspNetUsers.ToList();
+            // user = from AspNetUser where AspNetRole.Equals()
+            user = db.AspNetUsers.Where(t => t.AspNetRoles.Any(r => r.Name == "hr")).Select(x => x).ToList();
+           // user = db.AspNetUsers.ToList();
             //var e = Mapper.Map<List<ViewUserAndRoleDetails>>(user);
 
             return user;

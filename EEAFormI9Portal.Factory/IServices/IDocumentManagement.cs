@@ -10,5 +10,7 @@ namespace EEAFormI9Portal.Factory.IServices
     public interface IDocumentManagement
     {
         List<DocumentCurrent> GetDocumentDetails();
+        List<DocumentCurrent> GetDocumentDetailsByFilter(string docFilter);
+        List<DocumentStatu> GetDocumentStatusDetails();
     }
 }

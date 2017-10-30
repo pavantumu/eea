@@ -15,6 +15,9 @@ namespace EEAFormI9Portal.Models
         public int EVerifyStatusId { get; set; }
         public byte[] DateUpdated { get; set; }
 
+        public string UserEmail { get; set; }
         public string DocumentStatusName { get; set; }
+        public string EverifyStatusName { get; set; }
+        public string RepresentativeName { get; set; }
     }
 }

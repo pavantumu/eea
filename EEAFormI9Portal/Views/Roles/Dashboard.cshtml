@@ -5,3 +5,70 @@
 
 <h2>Dashboard of Admin</h2>
 
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-3 col-md-3 col-sm-3">
+            <div class="panel panel-primary" id="summary_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Overview</h3>
+                </div>
+                <div class="panel-body">
+                </div>
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        Action Required
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="col-lg-8 col-md-4">
+            <div class="panel panel-primary" id="manage_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Manage</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="col-lg-3 col-md-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                @Html.ActionLink("ADMINS", "Index", "Roles")
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                @Html.ActionLink("HR", "ViewHrDetails", "Roles")
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                @Html.ActionLink("ROLES", "ViewRoleDetails", "Roles") <br />
+                                @Html.ActionLink("ADD ROLE", "ViewRoleDetails", "Roles") <br />
+                                @Html.ActionLink("DELETE ROLE", "ViewRoleDetails", "Roles")
+                            </div>
+                        </div>
+
+                    </div>
+                    <div class="col-lg-3 col-md-3">
+
+                        <div class="panel panel-primary">
+                            <div class="panel-body">
+                                @Html.ActionLink("DOCUMENT STATUS", "ViewDocumentStatusDetails", "Document")
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+    </div>
+</div>

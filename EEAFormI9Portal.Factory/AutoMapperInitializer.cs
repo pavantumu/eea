@@ -34,10 +34,19 @@ namespace EEAFormI9Portal.Factory
                 cfg.CreateMap<AspNetRole, ViewRoles>()
                 .ReverseMap();
 
-                //cfg.CreateMap<DocumentCurrent, ViewDocument>()
-                ////.ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => new DocumentStatu { }))
-                //.ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => string.Join(",", src.DocumentStatu.Select(x => x.Name))))
-                //.ReverseMap();
+                cfg.CreateMap<DocumentCurrent, ViewDocument>()
+                //.ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => new DocumentStatu { }))
+                .ForMember(dest => dest.UserEmail, opt => opt.MapFrom(src => src.AspNetUser.Email))
+                .ForMember(dest => dest.DocumentStatusName, opt => opt.MapFrom(src => src.DocumentStatu.Status))
+                .ForMember(dest => dest.EverifyStatusName, opt => opt.MapFrom(src => src.EverifyStatu.EVerifyStatus))
+                .ForMember(dest => dest.RepresentativeName, opt => opt.MapFrom(src => src.Representative.FirstName))
+                .ReverseMap();
+
+                cfg.CreateMap<AspNetRole, ViewAspNetRoles>()
+                .ReverseMap();
+
+                cfg.CreateMap<DocumentStatu, ViewDocumentStatus>()
+                .ReverseMap();
             });
         }
     }

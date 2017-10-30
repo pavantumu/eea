@@ -9,10 +9,12 @@ using System.Web.Mvc;
 using EEAFormI9Portal.EF;
 using EEAFormI9Portal.Models;
 using AutoMapper;
+using System.Threading.Tasks;
+using Microsoft.AspNet.Identity;
 
 namespace EEAFormI9Portal.Controllers
 {
-    [Authorize(Roles="systemadmin")]
+    //[Authorize(Roles="systemadmin")]
     public class RolesController : BaseController
     {
         private EEAFORMI9Entities db = new EEAFORMI9Entities();
@@ -191,6 +193,32 @@ namespace EEAFormI9Portal.Controllers
             var e = Mapper.Map<List<ViewUserAndRoleDetails>>(User);
 
             return Json(e, JsonRequestBehavior.AllowGet);
+
+        }
+
+        public async Task<JsonResult> updateUserDetails()
+        {
+            string[] roles = { "representative", "admin" };
+            //var currUser = new AspNetUser;
+           // Guid id = new Guid("5763912d-3d01-4a27-bd28-935c2c2c9bac");
+            var currUser =  await UserManager.FindByIdAsync(User.Identity.GetUserId());
+
+            foreach(var role in roles)
+            {
+                var roleresult = await UserManager.AddToRoleAsync(currUser.Id.ToString(), role);
+            }
+            return Json(true, JsonRequestBehavior.AllowGet);
+        }
+
+        public JsonResult GetAllRoles()
+        {
+            //var roles = new List<AspNetRole>();
+
+            //roles = _IRoleManagement.GetAllRoles();
+            var roles = Mapper.Map<List<ViewAspNetRoles>>(_IRoleManagement.GetAllRoles());
+
+            return Json(roles, JsonRequestBehavior.AllowGet);
+
 
         }
 

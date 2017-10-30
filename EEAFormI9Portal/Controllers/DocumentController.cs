@@ -26,5 +26,30 @@ namespace EEAFormI9Portal.Controllers
 
             return Json(e, JsonRequestBehavior.AllowGet);
         }
+
+        [HttpGet]
+        public JsonResult GetDocumentDetailsByFilter(string filter)
+        {
+            var doc = new List<DocumentCurrent>();
+            doc = _IDocumentManagement.GetDocumentDetailsByFilter(filter);
+            var result = Mapper.Map<List<ViewDocument>>(doc);
+
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
+
+
+        public ActionResult ViewDocumentStatusDetails()
+        {
+            return View();
+        }
+
+        [HttpGet]
+        public JsonResult GetDocumentStatusDetails()
+        {
+            var doc = new List<DocumentStatu>();
+            doc = _IDocumentManagement.GetDocumentStatusDetails();
+            var result = Mapper.Map<List<ViewDocumentStatus>>(doc);
+            return Json(result, JsonRequestBehavior.AllowGet);
+        }
     }
 }

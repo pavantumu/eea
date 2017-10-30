@@ -24,19 +24,36 @@
                     <h3 class="panel-title">Documents</h3>
                 </div>
                 <div class="panel-body">
+                    <ul class="list-group">
+                        <li class="list-group-item" id="addRep">
+                            Sent
+                        </li>
+                        <li class="list-group-item" id="editRep">
+                            Pending
+                        </li>
+                        <li class="list-group-item" id="editRep">
+                            Completed
+                        </li>
+                    </ul>
                 </div>
-                <ul class="list-group">
-                    <li class="list-group-item" id="addRep">
-                        Sent
-                    </li>
-                    <li class="list-group-item" id="editRep">
-                        Pending
-                    </li>
-                    <li class="list-group-item" id="editRep">
-                        Completed
-                    </li>
-
-                </ul>
+            </div>
+            <div class="panel panel-primary" id="summary_container">
+                <div class="panel-heading">
+                    <h3 class="panel-title">Filters</h3>
+                </div>
+                <div class="panel-body">
+                    <select id="docfilter">
+                        <optgroup label="Document Status">
+                            <option value="pending_employee">Pending_employee</option>
+                            <option value="pending_representative">Pending_representative</option>
+                            <option value="completed">Completed</option>
+                            <option value="terminated">Terminated</option>
+                        </optgroup>
+                        <optgroup label="Representative">
+                            <option value="representative">Representative</option>
+                        </optgroup>
+                    </select>
+                </div>
             </div>
         </div>
         <div class="col-md-8 col-lg-8 col-sm-4">
@@ -48,7 +65,7 @@
                     <table class="table table-responsive table-hover" id="docDetails">
                         <thead>
                             <tr>
-                                <th data-field="userId">Employee</th>
+                                <th data-field="empemail">Employee Email</th>
                                 <th data-field="docStatus">Document Status</th>
                                 <th data-field="docRepresentative">Representative</th>
                                 <th data-field="Date">Date</th>
@@ -64,30 +81,62 @@
 
 <script>
     $(document).ready(function () {
+        var documentDetails = [];
         $.get({
             url: '/Document/GetDocumentDetails',
             data: {},
             success: function (docdata) {
+
+                documentDetails.push(docdata);
                 $('#docDetails').DataTable({
                     data: docdata,
                     aoColumns: [
-                        { data: "UserId" },
-                        { data: "DocumentStatusId" },
-                        { data: "RepresentativeId" },
+                        { data: "UserEmail" },
+                        { data: "DocumentStatusName" },
+                        { data: "RepresentativeName" },
                         { data: "DateUpdated" }
-                        //{
-                        //    mData: null,
-                        //    bSortable: false,
-                        //    mRender: function (o) { return '<i class="ui-tooltip fa fa-pencil" style="font-size: 22px;" data-original-title="Edit"></i><i class="ui-tooltip fa fa-trash-o" style="font-size: 22px;" data-original-title="Delete"></i>'; }
-                        //}
-
                     ]
 
                 });
+                //console.log(docdata);
             },
             error: function () {
 
             }
         });
+        //console.log(documentDetails);
+        $('#docfilter').change(function () {
+            //alert(this.value);
+            var filterValue = this.value;
+
+            //var docDetails = documentDetails;
+
+            //console.log(docDetails);
+            //if (filterValue != null) {
+            //    $('#docDetails').dataTable().fnDestroy();
+            //}
+
+            dataFilter(filterValue);
+            
+
+        });
+
+
+        var dataFilter = function (filterVal) {
+            $('#docDetails').DataTable({
+                "destroy": true,
+                
+                "ajax":{
+                    url: 'Document/GetDocumentDetailsByFilter',
+                    data: { filterVal },
+                    success: function (data) {
+                        console.log('true');
+                    },
+                    error: function () {
+
+                    }
+                }
+            });
+        }
     });
 </script>

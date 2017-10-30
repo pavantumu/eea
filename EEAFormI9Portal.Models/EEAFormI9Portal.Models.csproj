@@ -51,7 +51,9 @@
   <ItemGroup>
     <Compile Include="AddRepresentative.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewAspNetRoles.cs" />
     <Compile Include="ViewDocument.cs" />
+    <Compile Include="ViewDocumentStatus.cs" />
     <Compile Include="ViewRepresentativeDetails.cs" />
     <Compile Include="ViewRoles.cs" />
     <Compile Include="ViewUserAndRoleDetails.cs" />

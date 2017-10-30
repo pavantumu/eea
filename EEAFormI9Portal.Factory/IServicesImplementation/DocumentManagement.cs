@@ -28,5 +28,33 @@ namespace EEAFormI9Portal.Factory.IServicesImplementation
             
             return doc;
         }
+
+        public List<DocumentCurrent> GetDocumentDetailsByFilter(string docFilter)
+        {
+            //var doc = db.DocumentCurrents.ToList();
+            var singleDoc = new DocumentCurrent();
+            var doc = new List<DocumentCurrent>();
+            var allDoc = db.DocumentCurrents.ToList();
+            if (allDoc.Count > 0)
+            {
+                foreach (DocumentCurrent item in doc)
+                {
+                    singleDoc = db.DocumentCurrents.SingleOrDefault(x => x.DocumentStatu.Status == docFilter);
+                    doc.Add(singleDoc);
+                }
+                
+
+            }
+
+            return doc;
+        }
+
+        public List<DocumentStatu> GetDocumentStatusDetails()
+        {
+            var doc = new List<DocumentStatu>();
+            doc = db.DocumentStatus.ToList();
+
+            return doc;
+        }
     }
 }
